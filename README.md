@@ -69,4 +69,24 @@ extension ViewController {
         overrideUserInterfaceStyle = ThemeStore.theme.getUserInterfaceStyle()
     }
 }
+
+extension BaseViewController {
+    //MARK: - Handle border color during trait change
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            applicationDataContainer.currentTrait = .current
+            applicationDataContainer.currentTheme = applicationDataContainer.currentTrait.userInterfaceStyle
+            view.allSubviews().forEach { [weak self] in
+                guard let _ = self else {
+                    return
+                }
+                if $0.layer.borderColor != nil, $0.layer.borderColor != UIColor.clear.cgColor {
+                    let border = UIColor(cgColor: $0.layer.borderColor ?? UIColor.clear.cgColor)
+                    let color = Colors.convertHexToColor(hex: border.hexString())
+                    $0.layer.borderColor = color.resolvedColor(with: .current).cgColor
+                }
+            }
+        }
+    }
+}
 ```
