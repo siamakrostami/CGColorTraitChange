@@ -1,9 +1,5 @@
 # CGColorTraitChange
 
-![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
-
-## Description
-
 `CGColorTraitChange` is a project aimed at simplifying the handling of `CGColor` during trait changes in iOS applications. Additionally, it includes a theme manager designed to seamlessly manage system, dark, and light modes.
 
 ## Features
