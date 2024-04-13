@@ -18,9 +18,13 @@ enum DeviceTheme: Int {
         @Inject var appData: ApplicationDataContainer
         switch self {
         case .device:
-            appData.currentTheme = .unspecified
-            appData.currentTrait = .init(userInterfaceStyle: .unspecified)
-            return .unspecified
+                appData.currentTheme = .unspecified
+                if UIScreen.main.traitCollection.userInterfaceStyle == .light {
+                    appData.currentTrait = .init(userInterfaceStyle: .light)
+                }else{
+                    appData.currentTrait = .init(userInterfaceStyle: .dark)
+                }
+                return .unspecified
         case .light:
             appData.currentTheme = .light
             appData.currentTrait = .init(userInterfaceStyle: .light)

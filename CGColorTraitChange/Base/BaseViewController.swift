@@ -20,8 +20,7 @@ class BaseViewController: UIViewController {
 extension BaseViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-            applicationDataContainer.currentTrait = .current
-            applicationDataContainer.currentTheme = applicationDataContainer.currentTrait.userInterfaceStyle
+            view.window?.overrideUserInterfaceStyle = ThemeStore.theme.getUserInterfaceStyle()
             view.allSubviews().forEach { [weak self] in
                 guard let _ = self else {
                     return

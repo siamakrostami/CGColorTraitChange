@@ -20,4 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.overrideUserInterfaceStyle = ThemeStore.theme.getUserInterfaceStyle()
         return true
     }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        window?.overrideUserInterfaceStyle = ThemeStore.theme.getUserInterfaceStyle()
+    }
 }
